@@ -380,3 +380,11 @@
 		@apply text-16 font-semibold text-black-2 max-xl:hidden;
 	}
 }
+
+@layer base {
+	input[type="number"]::-webkit-inner-spin-button,
+	input[type="number"]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+}
