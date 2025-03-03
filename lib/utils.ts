@@ -75,7 +75,7 @@ export function formatAmount(amount: number): string {
 
 	return formatter.format(amount);
 }
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));
 
 export const removeSpecialCharacters = (value: string) => {
@@ -129,7 +129,6 @@ export function getAccountTypeColors(type: AccountTypes) {
 			};
 	}
 }
-
 export function countTransactionCategories(
 	transactions: Transaction[]
 ): CategoryCount[] {
@@ -137,6 +136,7 @@ export function countTransactionCategories(
 	let totalCount = 0;
 
 	// Iterate over each transaction
+	// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 	transactions &&
 		transactions.forEach((transaction) => {
 			// Extract the category from the transaction

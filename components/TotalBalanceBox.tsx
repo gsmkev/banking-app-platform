@@ -1,5 +1,3 @@
-import { formatAmount } from "@/lib/utils";
-import CountUp from "react-countup";
 import AnimatedCounter from "./AnimatedCounter";
 import DoughnutChart from "./DoughnutChart";
 

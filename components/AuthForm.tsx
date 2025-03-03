@@ -194,7 +194,7 @@ function AuthForm({ type }: { type: "sign-in" | "sign-up" }) {
 										: "grid grid-cols-1 md:grid-cols-2 gap-8"
 								}`}
 							>
-								{fields.map((field, index) => (
+								{fields.map((field) => (
 									<div
 										key={field.name}
 										className={
