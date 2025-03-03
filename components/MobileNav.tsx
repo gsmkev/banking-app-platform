@@ -4,6 +4,8 @@ import {
 	Sheet,
 	SheetClose,
 	SheetContent,
+	SheetTitle,
+	SheetDescription,
 	SheetTrigger,
 } from "@/components/ui/sheet";
 import { sidebarLinks } from "@/constants";
@@ -11,6 +13,8 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Footer from "./Footer";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 function MobileNav({ user }: MobileNavProps) {
 	const pathname = usePathname();
@@ -28,6 +32,12 @@ function MobileNav({ user }: MobileNavProps) {
 					/>
 				</SheetTrigger>
 				<SheetContent side="left" className="border-none bg-white">
+					<VisuallyHidden>
+						<SheetTitle>Menu</SheetTitle>
+						<SheetDescription>
+							This is the mobile navigation menu for Horizon
+						</SheetDescription>
+					</VisuallyHidden>
 					<Link
 						href="/"
 						className="cursor-pointer flex items-center gap-1 px-4"
@@ -82,7 +92,7 @@ function MobileNav({ user }: MobileNavProps) {
 								{/* User Profile */}
 							</nav>
 						</SheetClose>
-						{/* Footer */}
+						<Footer user={user} type="mobile" />
 					</div>
 				</SheetContent>
 			</Sheet>

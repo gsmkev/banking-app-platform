@@ -28,7 +28,7 @@ function CustomFormField<T extends z.ZodTypeAny>({
 					<div className="flex flex-col w-full">
 						<FormControl>
 							<Input
-								id={name as string}
+								id={label as string}
 								className="input-class"
 								type={type}
 								placeholder={placeholder}

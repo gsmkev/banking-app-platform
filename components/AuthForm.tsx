@@ -12,6 +12,8 @@ import { Form } from "@/components/ui/form";
 import CustomFormField from "./CustomFormField";
 import { signInFormSchema, signUpFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { signIn, signUp } from "@/lib/actions/user.actions";
 
 const signInFields: Array<{
 	name: keyof z.infer<typeof signInFormSchema>;
@@ -109,6 +111,7 @@ const signUpFields: Array<{
 function AuthForm({ type }: { type: "sign-in" | "sign-up" }) {
 	const [user, setUser] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
+	const router = useRouter();
 
 	const isSignIn = type === "sign-in";
 	const schema = isSignIn ? signInFormSchema : signUpFormSchema;
@@ -123,15 +126,25 @@ function AuthForm({ type }: { type: "sign-in" | "sign-up" }) {
 
 	async function handleSignIn(values: z.infer<typeof signInFormSchema>) {
 		setIsLoading(true);
-		console.log("Signing In with:", values);
-		await new Promise((resolve) => setTimeout(resolve, 1000));
+
+		const response = await signIn({
+			email: values.email,
+			password: values.password,
+		});
+
+		console.log("authForm", response);
+
+		if (response) router.push("/");
+
 		setIsLoading(false);
 	}
 
 	async function handleSignUp(values: z.infer<typeof signUpFormSchema>) {
 		setIsLoading(true);
-		console.log("Signing Up with:", values);
-		await new Promise((resolve) => setTimeout(resolve, 1000));
+
+		const user = await signUp(values);
+		setUser(user);
+
 		setIsLoading(false);
 	}
 
