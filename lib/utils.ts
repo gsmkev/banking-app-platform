@@ -205,12 +205,13 @@ export const signUpFormSchema = z.object({
 	password: z.string().min(8, "Password must be at least 8 characters"),
 	firstName: z.string().min(2, "First name must be at least 2 characters"),
 	lastName: z.string().min(2, "Last name must be at least 2 characters"),
-	address: z.string().min(5, "Address must be at least 5 characters"),
+	address1: z.string().min(5, "Address must be at least 5 characters"),
 	state: z
 		.string()
 		.min(2, "State must be at least 2 characters")
 		.max(2, "State must be at most 2 characters"),
 	postalCode: z.string().min(3, "Postal code must be at least 3 characters"),
-	dateOfBirth: z.string().min(1, "You must enter a valid date of birth"),
-	ssn: z.string().min(5, "SSN must be at least 5 characters"),
+	dateOfBirth: z.string().min(3, "You must enter a valid date of birth"),
+	ssn: z.string().min(9, "SSN must be at least 9 characters"),
+	city: z.string().min(2, "City must be at least 2 characters"),
 });

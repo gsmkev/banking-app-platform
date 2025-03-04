@@ -14,6 +14,7 @@ import { signInFormSchema, signUpFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signIn, signUp } from "@/lib/actions/user.actions";
+import PlaidLink from "./PlaidLink";
 
 const signInFields: Array<{
 	name: keyof z.infer<typeof signInFormSchema>;
@@ -58,9 +59,16 @@ const signUpFields: Array<{
 		type: "text",
 	},
 	{
-		name: "address",
+		name: "address1",
 		label: "Address",
 		placeholder: "Enter your address",
+		size: "2",
+		type: "text",
+	},
+	{
+		name: "city",
+		label: "City",
+		placeholder: "Enter your city",
 		size: "2",
 		type: "text",
 	},
@@ -74,7 +82,7 @@ const signUpFields: Array<{
 	{
 		name: "dateOfBirth",
 		label: "Date of Birth",
-		placeholder: "Enter your date of birth",
+		placeholder: "YYYY-MM-DD",
 		size: "1",
 		type: "date",
 	},
@@ -142,7 +150,20 @@ function AuthForm({ type }: { type: "sign-in" | "sign-up" }) {
 	async function handleSignUp(values: z.infer<typeof signUpFormSchema>) {
 		setIsLoading(true);
 
-		const user = await signUp(values);
+		const userData = {
+			firstName: values.firstName!,
+			lastName: values.lastName!,
+			address1: values.address1!,
+			city: values.city!,
+			state: values.state!,
+			postalCode: values.postalCode!,
+			dateOfBirth: values.dateOfBirth!,
+			ssn: values.ssn!,
+			email: values.email,
+			password: values.password,
+		};
+
+		const user = await signUp(userData);
 		setUser(user);
 
 		setIsLoading(false);
@@ -182,7 +203,9 @@ function AuthForm({ type }: { type: "sign-in" | "sign-up" }) {
 				</div>
 			</header>
 			{user ? (
-				<div className="flex flex-col gap-4">{/* PlaiLink */}</div>
+				<div className="flex flex-col gap-4">
+					<PlaidLink user={user} variant="primary" />
+				</div>
 			) : (
 				<>
 					<Form {...form}>
