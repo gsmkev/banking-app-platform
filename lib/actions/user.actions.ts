@@ -141,7 +141,7 @@ export const createBankAccount = async ({
 	bankId,
 	accountId,
 	accessToken,
-	fundingSourceUrl,
+	fundingSource,
 	shareableId,
 }: createBankAccountProps) => {
 	try {
@@ -156,7 +156,7 @@ export const createBankAccount = async ({
 				bankId,
 				accountId,
 				accessToken,
-				fundingSourceUrl,
+				fundingSource,
 				shareableId,
 			}
 		);
@@ -196,20 +196,20 @@ export const exchangePublicToken = async ({
 		);
 		const processorToken = processorTokenResponse.data.processor_token;
 
-		const fundingSourceUrl = await addFundingSource({
+		const fundingSource = await addFundingSource({
 			dwollaCustomerId: user.dwollaCustomerId,
 			processorToken,
 			bankName: accountData.name,
 		});
 
-		if (!fundingSourceUrl) throw Error;
+		if (!fundingSource) throw Error;
 
 		await createBankAccount({
 			userId: user.$id,
 			bankId: itemId,
 			accountId: accountData.account_id,
 			accessToken,
-			fundingSourceUrl,
+			fundingSource,
 			shareableId: encryptId(accountData.account_id),
 		});
 
