@@ -1,6 +1,6 @@
 "use server";
 
-import { ACHClass, CountryCode } from "plaid";
+import { CountryCode } from "plaid";
 
 import { plaidClient } from "../plaid";
 import { parseStringify } from "../utils";
@@ -144,7 +144,18 @@ export const getTransactions = async ({
 	accessToken,
 }: getTransactionsProps) => {
 	let hasMore = true;
-	let transactions: any = [];
+	let transactions: {
+		id: string;
+		name: string;
+		paymentChannel: string;
+		type: string;
+		accountId: string;
+		amount: number;
+		pending: boolean;
+		category: string;
+		date: string;
+		image: string;
+	}[] = [];
 
 	try {
 		// Iterate through each page of new transaction updates for item
@@ -165,7 +176,7 @@ export const getTransactions = async ({
 				pending: transaction.pending,
 				category: transaction.category ? transaction.category[0] : "",
 				date: transaction.date,
-				image: transaction.logo_url,
+				image: transaction.logo_url || "",
 			}));
 
 			hasMore = data.has_more;
