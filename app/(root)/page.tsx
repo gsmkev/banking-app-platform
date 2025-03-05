@@ -33,14 +33,14 @@ async function Home({ searchParams: { id, page } }: SearchParamProps) {
 				</header>
 				<RecentTransactions
 					accounts={accountsData}
-					transactions={accounts?.transactions}
+					transactions={account?.transactions}
 					appwriteItemId={appwriteItemId}
 					page={currentPage}
 				/>
 			</div>
 			<RightSidebar
 				user={loggedIn}
-				transactions={accounts?.transactions}
+				transactions={account?.transactions}
 				banks={accountsData?.slice(0, 2)}
 			/>
 		</section>
