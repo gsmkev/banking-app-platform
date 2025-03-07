@@ -1,6 +1,7 @@
 import { formatAmount } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import Copy from "./Copy";
 
 function BankCard({ account, userName, showBalance = true }: CreditCardProps) {
 	const points = (number: number) => {
@@ -53,6 +54,8 @@ function BankCard({ account, userName, showBalance = true }: CreditCardProps) {
 					className="absolute top-0 left-0"
 				/>
 			</Link>
+
+			{showBalance && <Copy title={account?.shareableId} />}
 		</div>
 	);
 }
