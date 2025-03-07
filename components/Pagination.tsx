@@ -52,11 +52,11 @@ export const Pagination = ({ page, totalPages }: PaginationProps) => {
 			>
 				Next
 				<Image
-					src="/icons/arrow-left.svg"
+					src="/icons/arrow-right.svg"
 					alt="arrow"
 					width={20}
 					height={20}
-					className="ml-2 -scale-x-100"
+					className="ml-2"
 				/>
 			</Button>
 		</div>
