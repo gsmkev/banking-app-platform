@@ -54,7 +54,11 @@ function RecentTransactions({
 							type="full"
 						/>
 						<TransactionsTable transactions={currentTransactions} />
-						<Pagination page={page} totalPages={totalPages} />
+						{totalPages > 1 && (
+							<div className="my-4 w-full">
+								<Pagination page={page} totalPages={totalPages} />
+							</div>
+						)}
 					</TabsContent>
 				))}
 			</Tabs>
