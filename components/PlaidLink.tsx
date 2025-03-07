@@ -66,15 +66,26 @@ function PlaidLink({ user, variant }: PlaidLinkProps) {
 						Connect Bank
 					</p>
 				</Button>
-			) : (
-				<Button onClick={() => open()} className="plaidlink-default">
+			) : variant === "mobile" ? (
+				<a
+					onClick={() => open()}
+					type="button"
+					className="mobilenav-sheet_close w-full"
+				>
 					<Image
 						src="/icons/connect-bank.svg"
 						alt="connect bank"
-						width={24}
-						height={24}
+						width={20}
+						height={20}
 					/>
-					<p className="text-[16px] font-semibold text-black-2">Connect Bank</p>
+					<p className="text-16 font-semibold text-black-2">Connect Bank</p>
+				</a>
+			) : (
+				<Button onClick={() => open()} className="sidebar-link">
+					<div className="relative size-6">
+						<Image src="/icons/connect-bank.svg" alt="connect bank" fill />
+					</div>
+					<p className="sidebar-label">Connect Bank</p>
 				</Button>
 			)}
 		</>
