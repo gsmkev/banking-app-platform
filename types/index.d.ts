@@ -85,7 +85,7 @@ declare type Bank = {
 	accountId: string;
 	bankId: string;
 	accessToken: string;
-	fundingSourceUrl: string;
+	fundingSource: string;
 	userId: string;
 	shareableId: string;
 };
@@ -111,8 +111,8 @@ declare type Receiver = {
 };
 
 declare type TransferParams = {
-	sourceFundingSourceUrl: string;
-	destinationFundingSourceUrl: string;
+	sourcefundingSource: string;
+	destinationfundingSource: string;
 	amount: string;
 };
 
