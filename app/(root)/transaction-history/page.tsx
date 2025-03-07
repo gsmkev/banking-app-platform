@@ -4,11 +4,8 @@ import { getAccount, getAccounts } from "@/lib/actions/bank.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { formatAmount } from "@/lib/utils";
 
-async function TransactionHistory({
-	searchParams: { id, page },
-}: SearchParamProps) {
+async function TransactionHistory({ searchParams: { id } }: SearchParamProps) {
 	const loggedIn = await getLoggedInUser();
-	const currentPage = Number(page as string) || 1;
 	const accounts = await getAccounts({ userId: loggedIn?.$id });
 	if (!accounts) return null;
 	const accountsData = accounts?.data;
