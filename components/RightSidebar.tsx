@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import BankCard from "./BankCard";
 import { countTransactionCategories } from "@/lib/utils";
-import { DivideCircle } from "lucide-react";
 import Category from "./Category";
 
 function RightSidebar({ user, transactions, banks }: RightSidebarProps) {
