@@ -23,7 +23,7 @@ const {
 export const getUserInfo = async ({ userId }: getUserInfoProps) => {
 	try {
 		const { database } = await createAdminClient();
-
+		if (!userId) throw new Error("User not authenticated");
 		const user = await database.listDocuments(
 			DATABASE_ID!,
 			USER_COLLECTION_ID!,
@@ -48,6 +48,7 @@ export const signIn = async ({ email, password }: signInProps) => {
 			secure: true,
 		});
 
+		if (!session) throw new Error("Error creating session");
 		const user = await getUserInfo({ userId: session.userId });
 		return parseStringify(user);
 	} catch (error) {
@@ -112,6 +113,7 @@ export async function getLoggedInUser() {
 		const { account } = await createSessionClient();
 
 		const result = await account.get();
+		if (!result) throw new Error("User not authenticated");
 		const user = await getUserInfo({ userId: result.$id });
 
 		return parseStringify(user);
@@ -245,7 +247,7 @@ export const exchangePublicToken = async ({
 export const getBanks = async ({ userId }: getBanksProps) => {
 	try {
 		const { database } = await createAdminClient();
-
+		if (!userId) throw new Error("User not authenticated");
 		const banks = await database.listDocuments(
 			DATABASE_ID!,
 			BANK_COLLECTION_ID!,
