@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import HeaderBox from "@/components/Header";
 import RecentTransactions from "@/components/RecentTransactions";
 import RightSidebar from "@/components/RightSidebar";

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import HeaderBox from "@/components/Header";
 import { Pagination } from "@/components/Pagination";
 import TransactionTable from "@/components/TransactionTable";
